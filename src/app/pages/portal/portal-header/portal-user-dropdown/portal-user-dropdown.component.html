@@ -1,0 +1,10 @@
+<li class="nav-item dropdown">
+  <a class="nav-link" (click)="toggleDropdownMenu()">
+    <i class="fas fa-user cs-i-w"></i>
+  </a>
+  <div #dropdownMenu class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a class="dropdown-item" style="text-align: center;"><i class="fas fa-user-tag"></i> {{ UserName }}</a>
+    <a [routerLink]="['/portal-change-pass']" class="dropdown-item" style="text-align: center;"><i class="fas fa-key"></i> Đổi
+      mật khẩu</a>
+  </div>
+</li>

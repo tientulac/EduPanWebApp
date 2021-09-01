@@ -1,0 +1,178 @@
+/* You can add global styles to this file, and also import other style files */
+// @import '~bootstrap/scss/bootstrap';
+
+@import '~ionicons/css/ionicons.min.css';
+
+@import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+@import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import '~admin-lte/dist/css/adminlte.min.css';
+
+@import '~ngx-toastr/toastr';
+@import '~normalize.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// ::-webkit-scrollbar {
+//   width: 0px;
+//   /* remove scrollbar space */
+//   background: transparent;
+//   /* optional: just make scrollbar invisible */
+// }
+:host {
+  width: 100vw;
+  height: 100vh;
+}
+.require:after {
+  content: '*';
+  color: red;
+}
+@keyframes ldio-x95p7sxsl2i {
+  0% {
+      transform: scale(1.1500000000000001)
+  }
+
+  100% {
+      transform: scale(1)
+  }
+}
+
+.ldio-x95p7sxsl2i div {
+  position: absolute;
+  width: 118.80000000000001px;
+  height: 118.80000000000001px;
+  top: 19.800000000000004px;
+  left: 19.800000000000004px;
+  background: #e15b64;
+  animation: ldio-x95p7sxsl2i 1s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  animation-delay: -0.3s;
+}
+
+.ldio-x95p7sxsl2i div:nth-child(2) {
+  top: 19.800000000000004px;
+  left: 158.4px;
+  background: #f47e60;
+  animation-delay: -0.2s;
+}
+
+.ldio-x95p7sxsl2i div:nth-child(3) {
+  top: 158.4px;
+  left: 19.800000000000004px;
+  background: #abbd81;
+  animation-delay: 0s;
+}
+
+.ldio-x95p7sxsl2i div:nth-child(4) {
+  top: 158.4px;
+  left: 158.4px;
+  background: #f8b26a;
+  animation-delay: -0.1s;
+}
+
+.loadingio-spinner-cube-3p98jy7i84o {
+  width: 297px;
+  height: 297px;
+  display: inline-block;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.ldio-x95p7sxsl2i {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+  /* see note above */
+}
+
+.ldio-x95p7sxsl2i div {
+  box-sizing: content-box;
+}
+
+.cus-body{
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 20px;
+}
+
+.cus-fs{
+  font-size: 13px;font-family: sans-serif;
+}
+.pt10 {
+  padding-top: 10px !important;
+}
+.cus-cr{
+color: red;
+}
+.cus-cb{
+color: blue;
+}
+.cus-ml{
+ margin-left: 5px;
+}
+.require::after {
+content: '*';
+margin-left: 5px;
+color: red;
+}
+.cus-box {
+  padding: 1%;
+  border-radius: 5px;
+  background: #efebeb;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+.cus-lb-box{
+font-size:15px;font-weight:700;margin:10px;
+font-family: sans-serif;
+}
+.cus-texeria{
+width:100%;padding:12px 20px;box-sizing:border-box;border:2px solid #ccc;border-radius:4px;resize:none;
+}
+.cus-fs13{
+font-size: 14px;
+}
+.icon-box {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 9;
+  text-align: center;
+  border: 3px solid #f15e5e;
+}
+.modal-xl {
+  max-width: 100% !important;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.modal-body {
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 20px;
+  }
+}
+html, body { height: 100%; }
+s
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+label { 
+  margin-top: 15px;
+}
+.modal-header {
+  margin-top: 15px;
+  font-size: 60px !important;
+  font-weight: bold !important;
+}
+
+// Angular Gird
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+
+.ag-theme-alpine {
+    @include ag-theme-alpine((
+        odd-row-background-color: #CFD8DC
+    ));
+}

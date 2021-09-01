@@ -1,0 +1,110 @@
+<section class="content-header" style="padding: 0.5% !important;">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <button class="btn btn-success btn-sm float-right" (click)="open(InsertModal, 'xs', 'Add', '')">
+                    <i class="fas fa-plus-circle"></i> Thêm mới
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive" style=" max-height: 60vh;">
+            <table class="table table-bordered">
+                <thead style="text-align: center;">
+                    <tr>
+                        <th class="text-center">STT</th>
+                        <th>Tên tài liệu </th>
+                        <th>Mô tả</th>
+                        <th>Tài liệu</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of dataTable; index as i">
+                        <td class="text-center">{{i+1}}</td>
+                        <td>{{p.FileName}}</td>
+                        <td>{{p.Mo_ta}}</td>
+                        <td class="text-center"><a style="font-size:16px;" href="{{p.Url}}" download><i
+                                    class="fas fa-download"></i></a></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-danger" style="margin-right: 7px;"
+                                (click)="open(DeleteModal, 'xs', 'Delete', p)">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="dataTable.length==0">
+                        <td colspan="5" class="text-center"> Không có kết quả</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #InsertModal let-modal>
+    <div class="modal-header m-header text-center" style="padding-top: 0px; padding-bottom: 0px;">
+        <h4 class="modal-title h-title w-100">{{ titleModal }}</h4>
+        <span (click)="modal.dismiss('Cross click')" aria-hidden="true" style="font-size: 25px;">&times;</span>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="col-md-10 ">Chọn file</label>
+                <input type="file" #fileInput ng2FileSelect [uploader]="uploader" />
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-10 ">Mô tả</label>
+                <input type="text" class="form-control" [(ngModel)]="Mo_ta">
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="float-right">
+            <button type="button" class="btn btn-md btn-success" (click)="onSubmit()">
+                <i class="fa-plus-circle fas"></i> Lưu
+            </button>
+            <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')"
+                style="margin-left: 1em;">
+                <i class="far fa-times-circle"></i> Đóng
+            </button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #DeleteModal let-modal>
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="icon-box">
+                <i class="fas fa-trash-alt" style="
+              color: #f15e5e;
+              font-size: 46px;
+              display: inline-block;
+              margin-top: 13px;
+            "></i>
+            </div>
+            <p style="
+            color: inherit;
+            text-decoration: none;
+            font-size: 20px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 3em;
+          ">
+                Bạn có chắc chắn muốn xóa
+            </p>
+            <div class="text-center">
+                <button type="button" class="btn btn-md btn-success" (click)="Delete()">
+                    Đồng ý
+                </button>
+                <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')"
+                    style="margin-left: 1em;">
+                    Hủy bỏ
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>

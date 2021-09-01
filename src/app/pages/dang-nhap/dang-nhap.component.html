@@ -1,0 +1,92 @@
+<div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <form
+          [formGroup]="loginForm"
+          class="login100-form validate-form"
+          style="padding-top: 70px !important;"
+        >
+          <img
+            src="/assets/img/thienan.png"
+            style="
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              width: 50%;
+            "
+            class="center"
+          />
+          <span class="login100-form-title p- -43" style="margin-bottom: 30px;">
+            Đăng nhập để truy cập ký túc xá
+          </span>
+          <label class="label_login"
+            ><i class="fas fa-user"></i> &nbsp; Mã sinh viên/Mã hồ sơ
+          </label>
+          <div class="wrap-input100 validate-input" style="height: 45px;">
+            <input
+              class="input100"
+              placeholder="Nhập mã"
+              formControlName="UserName"
+              type="text"
+              style="border-radius: 90px;"
+            />
+            <span class="focus-input100"></span>
+            <span class="label-input100"></span>
+          </div>
+          <label class="label_login"
+            ><i class="fas fa-key"></i> &nbsp; Mật khẩu
+          </label>
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Password is required"
+            style="height: 45px;"
+          >
+            <input
+              class="input100"
+              placeholder="Nhập mật khẩu"
+              type="password"
+              formControlName="Password"
+              style="border-radius: 90px;"
+            />
+            <span class="focus-input100"></span>
+            <span class="label-input100"></span>
+          </div>
+  
+          <div class="container-login100-form-btn" style="margin-top: 30px;">
+            <button
+              class="login100-form-btn"
+              (click)="logIn()"
+              style="height: 45px;"
+            >
+              Đăng nhập
+            </button>
+          </div>
+          <div>
+            <br/>
+            <a
+              [routerLink]="['/xac-nhan']"
+              class="registertxt"
+              style="text-align: center;"
+            >
+              Chưa có mã sinh viên? Vui lòng xác thực thông tin tại đây để được cấp mã
+          </a>
+          </div>
+          <div>
+            <br/>
+            <a
+              [routerLink]="['/admin']"
+              class="registertxt"
+              style="text-align: center;"
+            >
+              Truy cập trang quản trị dành cho ban quản lý tại đây
+          </a>
+          </div>
+        </form>
+        <div
+          class="login100-more"
+          style="background-image: url('/assets/img/bg-login.jpg');"
+        ></div>
+      </div>
+    </div>
+  </div>
+  

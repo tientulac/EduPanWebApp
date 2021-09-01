@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <app-portal-header (toggleMenuSidebar)="toggleMenuSidebar()"></app-portal-header>
+  
+    <app-portal-menu-sidebar
+      (mainSidebarHeight)="mainSidebarHeight($event)"
+    ></app-portal-menu-sidebar>
+  
+    <div #contentWrapper class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  
+    <app-portal-footer></app-portal-footer>
+    <aside class="control-sidebar control-sidebar-dark"></aside>
+    <div id="sidebar-overlay" (click)="toggleMenuSidebar()"></div>
+  </div>

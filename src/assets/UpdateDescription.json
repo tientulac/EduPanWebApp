@@ -1,0 +1,60 @@
+
+[
+    {
+        "Version": "1.2.1.7",
+        "Date":"26/01/2021",
+        "Detail": [
+            "Thêm chức năng tra cứu log từ ngày đến ngày và xuất excel",
+            "Sửa các lỗi liên quan đến biên lai hóa đơn",
+            "Sửa các lỗi phân quyền"
+
+        ]
+    },
+    {
+        "Version": "1.2.1.6",
+        "Date":"05/1/2021",
+        "Detail": [
+            "Cập nhật chức năng quy định đăng ký",
+            "Tối ưu hóa giao diện người dùng"
+
+        ]
+    },
+    {
+        "Version": "1.2.1.5",
+        "Date":"09/12/2020",
+        "Detail": [
+            "Tối ưu hóa tốc độ xử lý",
+            "Sửa đổi giao diện các chức năng",
+            "Bổ sung chức năng Biến động khoản thu",
+            "Đóng gói hệ thống"
+
+        ]
+    },
+    {
+        "Version": "1.2.1.4",
+        "Date":"08/12/2020",
+        "Detail": [
+            "Cập nhật hệ thống"
+        ]
+    },
+    {
+        "Version": "1.2.1.3",
+        "Date":"08/10/2020",
+        "Detail": [
+            "Cập nhật chức năng xếp phòng",
+            "Bổ sung chức năng phân quyền",
+            "Bổ sung chức năng tra cứu log người dùng",
+            "Cập nhật một số giao diện khác"
+        ]
+    },
+    {
+        "Version": "1.0.0.0",
+        "Date":"01/10/2020",
+        "Detail": [
+            "Sửa đổi chức năng biên lai",
+            "Sửa đổi giao diện các chức năng",
+            "Tối ưu hóa tốc độ xử lý",
+            "Bổ sung chức năng danh sách hạn chế"
+        ]
+    }
+]

@@ -1,0 +1,62 @@
+<aside
+  #mainSidebar
+  class="main-sidebar sidebar-light-primary elevation-4 cus-text"
+  style="overflow: visible !important; position: fixed;"
+>
+  <!-- Brand Logo -->
+  <a [routerLink]="['/portal/']" class="brand-link">
+    <img src="assets/img/unilogo.png" alt="UniDormitory" class="brand-image" />
+    <span class="brand-text font-weight-light">UniDormitory</span>
+  </a>
+
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <li id="menu1" class="nav-item menu-open">
+          <a
+            class="nav-link cus-bg"
+            (click)="menu('menu1')"
+            style="background: #418994; color: white;"
+          >
+          <i class="fas fa-hotel"></i>&nbsp;
+            <p>
+              Dịch vụ
+              <i class="right fa fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                [routerLink]="['/dang-ky']"
+                class="nav-link"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+              <i class="fas fa-file-invoice"></i>
+                <p>&nbsp;Đăng ký ở</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                [routerLink]="['/de-xuat']"
+                class="nav-link"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+              <i class="fas fa-user-graduate"></i>
+                <p>&nbsp;Đề xuất</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+</aside>

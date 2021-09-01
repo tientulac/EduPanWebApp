@@ -1,0 +1,190 @@
+<!----------------------------------------------- HEADER ------------------------------------------------->
+<section class="content-header" style="padding:0.5%  !important">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <ol class="breadcrumb float-left">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']"><i class="fas fa-home"></i> &nbsp;Trang chủ</a>
+                    </li>
+                    <li class="breadcrumb-item active">Quản lí loại phòng họp</li>
+                </ol>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-success btn-sm" (click)="open(AddModal,'ls','Add','')" style="float: right;"><i
+                        class="fas fa-plus-circle"></i> Thêm mới
+                </button>
+                <button class="btn btn-warning btn-sm"  type="submit" style="float: right;margin-right: 5px; ">
+                    <i class="fas fa-info-circle"></i>
+                    Hướng dẫn
+                </button>
+            </div>
+        </div>
+    </div>
+  </section>
+
+<!----------------------------------------------- TABLE ------------------------------------------------->
+<section class="content cus-body">
+  <div class="card">
+      <div class="card-body">
+          <div class="tab-content">
+              <div class="active tab-pane">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="table-responsive dataTables_wrapper container-fluid dt-bootstrap4 cus-fs">
+                              <table style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                  class="table-bordered dataTables_wrapper no-footer">
+                              <thead style="text-align: center;">
+                                  <tr>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let p of dataTable; let i=index" >
+                                      <td>{{i+1}}</td>
+                                      <td>{{p.Ma_phong}}</td>
+                                      <td>{{p.Ten_phong}}</td>
+                                      <td>{{p.Suc_chua}}</td>
+                                      <td>{{p.So_hang}}</td>
+                                      <td>{{p.So_cot}}</td>
+                                      <td style="word-wrap: break-word;max-width: 200px;">{{p.Ten_hoi_thao}}</td>
+                                      <td>
+                                        <button class="btn btn-sm btn-info"
+                                        (click)="open(AddModal, 'xs', 'Update', p)"
+                                        style="margin-right: 5px;">
+                                        <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-info"
+                                        (click)="open(DeleteModal, 'xs', 'Delete', p)"
+                                        style="background-color: #dc3545;border-color:#dc3545 !important;">
+                                        <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-----------------------------------------------ADD MODAL ------------------------------------------------->
+  <ng-template #AddModal let-modal>
+    <div class="modal-header m-header text-center" style="padding-top: 0px; padding-bottom: 0px;">
+      <h4 class="modal-title h-title w-100"> {{titleModal}}</h4>
+      <span (click)="modal.dismiss('Cross click')" aria-hidden="true" style="font-size: 25px;">&times;</span>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal" [formGroup]="Insert">
+        <div class="row">
+          <div class="col-md-12">
+            <label class="col-md-10 require">Mã phòng</label>
+              <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && checkvalueInsert.Ma_phong.errors }"
+               formControlName="Ma_phong" placeholder="Nhập mã...">
+               <div *ngIf="submitted && checkvalueInsert.Ma_phong.errors" class="invalid-feedback">
+                  <div *ngIf="checkvalueInsert.Ma_phong.errors.required">
+                    Mã phòng không được bỏ trống!
+                  </div>
+               </div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-md-10 require">Tên phòng</label>
+              <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && checkvalueInsert.Ten_phong.errors }"
+               formControlName="Ten_phong" placeholder="Nhập tên...">
+               <div *ngIf="submitted && checkvalueInsert.Ten_phong.errors" class="invalid-feedback">
+                  <div *ngIf="checkvalueInsert.Ten_phong.errors.required">
+                    Tên phòng không được bỏ trống!
+                  </div>
+               </div>
+          </div>
+          <div class="col-md-4">
+            <label class="col-md-12 require">Sức chứa</label>
+              <input type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && checkvalueInsert.Suc_chua.errors }"
+               formControlName="Suc_chua" placeholder="Nhập giá trị...">
+               <div *ngIf="submitted && checkvalueInsert.Suc_chua.errors" class="invalid-feedback">
+                  <div *ngIf="checkvalueInsert.Suc_chua.errors.required">
+                    Sức chứa không được bỏ trống!
+                  </div>
+               </div>
+          </div>
+          <div class="col-md-4">
+            <label class="col-md-12 require">Số hàng</label>
+              <input type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && checkvalueInsert.So_hang.errors }"
+               formControlName="So_hang" placeholder="Nhập Giá trị...">
+               <div *ngIf="submitted && checkvalueInsert.So_hang.errors" class="invalid-feedback">
+                  <div *ngIf="checkvalueInsert.So_hang.errors.required">
+                    Số hàng không được bỏ trống!
+                  </div>
+               </div>
+          </div>
+          <div class="col-md-4">
+            <label class="col-md-12 require">Số cột</label>
+              <input type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && checkvalueInsert.So_cot.errors }"
+               formControlName="So_cot" placeholder="Nhập Giá trị...">
+               <div *ngIf="submitted && checkvalueInsert.So_cot.errors" class="invalid-feedback">
+                  <div *ngIf="checkvalueInsert.So_cot.errors.required">
+                    Số cột không được bỏ trống!
+                  </div>
+               </div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-md-10 require">Hội thảo</label>
+              <ng-select formControlName="ID_hoi_thao" [ngClass]="{ 'is-invalid': submitted && checkvalueInsert.ID_hoi_thao.errors }">
+                  <ng-option value="">Tất cả</ng-option>
+                  <ng-option *ngFor="let ht of dataHoiThao" [value]="ht.ID_hoi_thao">{{ht.Ten_hoi_thao}}</ng-option>
+              </ng-select>
+               <div *ngIf="submitted && checkvalueInsert.ID_hoi_thao.errors" class="invalid-feedback">
+                  <div *ngIf="checkvalueInsert.ID_hoi_thao.errors.required">
+                    Hội thảo không được bỏ trống!
+                  </div>
+               </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div class="float-right">
+        <button type="button" class="btn btn-md btn-success" (click)="onSubmit()">
+          <i class="fas fa-save"></i> Lưu
+        </button>
+        <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')"
+          style="margin-left: 1em;">
+          <i class="far fa-times-circle"></i> Đóng
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-----------------------------------------------DELETE MODAL ------------------------------------------------->
+  <ng-template #DeleteModal let-modal>
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="icon-box">
+                <i class="fas fa-trash-alt"
+                    style="color: #f15e5e;font-size: 46px;display: inline-block;margin-top: 13px;"></i>
+            </div>
+            <p
+                style="color: inherit; text-decoration: none;font-size: 20px; text-align: center; font-weight: 600; margin-top: 3em;">
+                Bạn có chắc chắn muốn xóa
+            </p>
+            <div class="text-center">
+                <button type="button" class="btn btn-md btn-success" (click)="Delete()" >
+                    Đồng ý
+                </button>
+                <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')" style="margin-left: 1em;">
+                    Hủy bỏ
+                </button>
+
+            </div>
+        </div>
+    </div>
+  </ng-template>

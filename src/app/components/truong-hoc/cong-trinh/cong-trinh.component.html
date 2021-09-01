@@ -1,0 +1,124 @@
+<!----------------------------------------------- TABLE ------------------------------------------------->
+<section class="content cus-body">
+  <div class="card">
+      <div class="card-body">
+          <div class="tab-content">
+              <div class="active tab-pane">
+                  <div class="row">
+                      <div class="col-md-12">
+                        <div class="col-md-12">
+                            <button class="btn btn-success btn-sm" (click)="open(AddModal,'lg','Add','')" style="float: right;"><i
+                                    class="fas fa-plus-circle"></i> Thêm mới
+                            </button>
+                        </div>
+                          <div class="table-responsive dataTables_wrapper container-fluid dt-bootstrap4 cus-fs">
+                              <table style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                  class="table-bordered dataTables_wrapper no-footer">
+                              <thead style="text-align: center;">
+                                  <tr>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let p of dataTable; let i=index" >
+                                      <td>{{i+1}}</td>
+                                      <td>{{p.Ten_cong_trinh}}</td>
+                                      <td>{{p.Ngay_tao | date:'dd-MM-yyyy'}}</td>
+                                      <td>{{p.Ten_trang_thai}}</td>
+                                      <td>{{p.Ten_chuyen_gia}}</td>
+                                      <td>
+                                        <button class="btn btn-sm btn-info"
+                                        (click)="open(DeleteModal, 'xs', 'Delete', p)"
+                                        style="background-color: #dc3545;border-color:#dc3545 !important;">
+                                        <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                      </td>
+                                    </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-----------------------------------------------DELETE MODAL ------------------------------------------------->
+  <ng-template #DeleteModal let-modal>
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="icon-box">
+                <i class="fas fa-trash-alt"
+                    style="color: #f15e5e;font-size: 46px;display: inline-block;margin-top: 13px;"></i>
+            </div>
+            <p
+                style="color: inherit; text-decoration: none;font-size: 20px; text-align: center; font-weight: 600; margin-top: 3em;">
+                Bạn có chắc chắn muốn xóa
+            </p>
+            <div class="text-center">
+                <button type="button" class="btn btn-md btn-success" (click)="Delete()" >
+                    Đồng ý
+                </button>
+                <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')" style="margin-left: 1em;">
+                    Hủy bỏ
+                </button>
+
+            </div>
+        </div>
+    </div>
+  </ng-template>
+
+<!-----------------------------------------------ADD MODAL ------------------------------------------------->
+  <ng-template #AddModal let-modal>
+    <div class="modal-header m-header text-center" style="padding-top: 0px; padding-bottom: 0px;">
+      <h4 class="modal-title h-title w-100"> {{titleModal}}</h4>
+      <span (click)="modal.dismiss('Cross click')" aria-hidden="true" style="font-size: 25px;">&times;</span>
+    </div>
+    <div class="container" style="margin-bottom: 30px;margin-top:30px">
+        <input type="text" class="form-control" (keyup)="changeCongTrinh()" [(ngModel)]="congtrinhSearch" placeholder="Tìm kiếm ...">
+    </div>
+    <div class="modal-body">
+        <table class="table table-bordered">
+            <thead style="text-align: center;">
+              <tr>
+                <th scope="col">
+                    <input type="checkbox" id="SelectALL" [(ngModel)]="itemSelected" (change)="checkUncheckAll()">
+                </th>                
+                <th scope="col">STT</th>
+                <th scope="col">Tên công trình</th>
+                <th scope="col">Ngày tạo</th>
+                <th scope="col">Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ct of dataCongTrinh;let i=index">
+                <td style="text-align: center;">
+                    <input type="checkbox" [checked]="ct.checked" [(ngModel)]="ct.checked">
+                </td>
+                <th style="text-align: center;" scope="row">{{i+1}}</th>
+                <td>{{ct.Ten_cong_trinh}}</td>
+                <td>{{ct.Ngay_tao | date: 'dd-MM-yyyy'}}</td>
+                <td>{{ct.Ten_trang_thai}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+      <div class="float-right">
+        <button type="button" class="btn btn-md btn-success" (click)="onSubmit()">
+          <i class="fas fa-save"></i> Lưu
+        </button>
+        <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')"
+          style="margin-left: 1em;">
+          <i class="far fa-times-circle"></i> Đóng
+        </button>
+      </div>
+    </div>
+</ng-template>

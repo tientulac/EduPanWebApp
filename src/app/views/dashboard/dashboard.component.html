@@ -1,0 +1,123 @@
+<section class="content">
+  <div class="container-fluid" >
+    <div class="col-md-2" style="float:right;margin-top: 25px;">
+      <div class="row">
+        <div class="col-12">
+          <div style="height: 90%;" class="small-box bg-info">
+             <div class="inner">
+              <a [routerLink]="['/user-manager']" style="color: white;text-decoration: none !important;">
+                <h3>{{count_sinh_vien}}</h3>
+                <p>Sinh viên</p>
+              </a>
+            </div>
+            <div class="icon">
+              <i class="fas fa-user-friends"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div style="height: 90%;" class="small-box bg-success">
+             <div class="inner">
+              <a [routerLink]="['/customer']" style="color: white;text-decoration: none !important;">
+                <h3>{{count_hoi_thao}}</h3>
+                <p>Hội nghị, hội thảo</p>
+              </a>
+            </div>
+            <div class="icon">
+              <i class="fas fa-user-tag"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div style="height: 90%;" class="small-box bg-info">
+             <div class="inner">        
+              <a [routerLink]="['/function']" style="color: white;text-decoration: none !important;">  
+                <h3>{{count_truong_hoc}}</h3>
+                <p>Trường học</p>       
+              </a>    
+            </div>
+            <div class="icon">
+              <i class="fas fa-building"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div style="height: 90%;" class="small-box bg-secondary">
+             <div class="inner">     
+              <a [routerLink]="['/version']" style="color: white;text-decoration: none !important;">
+                <h3>{{count_trung_tam}}</h3>
+                <p>Trung tâm</p>
+              </a>
+            </div>
+            <div class="icon">
+              <i class="fab fa-buffer"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div style="height: 90%;background-color: rgb(255 88 88);color: white;" class="small-box">
+             <div class="inner">
+              <a [routerLink]="['/module']" style="color: white;text-decoration: none !important;">
+                <h3>{{count_chuyen_gia}}</h3>
+                <p>Chuyên gia</p>
+              </a>
+            </div>
+            <div class="icon">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div style="height: 90%;" class="small-box bg-warning">
+             <div class="inner">
+              <h3>{{count_loai_hoc_bong}}</h3>
+              <p>Loại học bổng</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-database"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class=col-md-12>
+        <p style="font-size: 18px;text-align: center;padding: 10px;font-weight: bold;">Số sinh viên đủ điều kiện nhận học bổng trong 3 tháng gần đây</p>
+        <div id="chartContainer" style="height: 40vh !important; width: 60% !important; margin-left:auto;margin-right:auto;">
+          <canvas id="canvas">{{ Linechart }}</canvas>    
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="card" style="width:100%;margin: 12px;">
+        <div class="card-header" style="text-align: center;">
+          <label style="font-size: 18px;">Danh sách sinh viên đủ điều kiện nhận học bổng</label>
+        </div>
+        <div class="table-responsive" style="max-height: 30vh; margin-bottom: 15px;">
+          <table class="table table-bordered" id="tableData">
+            <thead>
+              <th>STT</th>
+              <th>Học bổng</th>
+              <th>Ngày cấp</th>
+              <th>Trạng thái</th>
+              <th>Loại học bổng</th>
+              <th>Họ tên</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of dataHocBongSinhVien; let i = index; let odd = odd">
+                <td>{{i+1}}</td>
+                <td>{{p.Ten_hoc_bong}}</td>
+                <td>{{p.Ngay_cap | date: 'dd-MM-yyyy'}}</td>
+                <td>{{p.Ten_trang_thai}}</td>
+                <td>{{p.Ten_loai_hoc_bong}}</td>
+                <td>{{p.Ho_ten}}</td>     
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,83 @@
+<section class="content-header" style="padding: 0.5% !important;">
+  <div class="container-fluid">
+      <div class="row mb-2">
+          <div class="col-md-6">
+              <ol class="breadcrumb float-sm-left">
+                  <li class="breadcrumb-item">
+                      <a [routerLink]="['/']"><i class="fas fa-home"></i> &nbsp;Trang chủ</a>
+                  </li>
+                  <li class="breadcrumb-item active">Thay đổi mật khẩu</li>
+              </ol>
+          </div>
+          <div class="col-md-6">
+              <button class="btn btn-warning btn-sm"  type="submit" style="float: right; ">
+                  <i class="fas fa-info-circle"></i>
+                  Hướng dẫn
+              </button>
+          </div>
+      </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="card card card-primary">
+              <div class="card-header no-border">
+                <div class="row">
+                    <div class=" col-md-3"><h3 class="card-title">{{title}}</h3></div>
+                </div>
+              </div>
+              <div class="card-body login-card-body" style = "height:100% !important">
+                <form [formGroup]="ChangePasswordForm">
+                  <div class="row cus-row">
+                    <div class="col-md-4">
+                      <label><i class="fas fa-key"></i>&nbsp; Mật khẩu cũ: </label>
+                    </div>
+                    <div class="col-md-8">
+                      <input formControlName="Old_Password_Form" type="password" class="form-control" placeholder="Mật khẩu hiện tại" />
+                    </div>
+                  </div>
+                  <div class="row cus-row">
+                    <div class="col-md-4">
+                      <label><i class="fas fa-unlock-alt"></i> &nbsp; Mật khẩu mới: </label>
+                    </div>
+                    <div class="input-group col-md-8">
+                      <input formControlName="New_Password_Form" type="{{isPassword ? 'password' : 'text' }}" class="form-control" placeholder="Mật khẩu mới" />
+                      <div class="input-group-append">
+                        <span (click)="show()" class="input-group-text"><i class="far fa-eye"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row cus-row">
+                    <div class="col-md-4">
+                      <label><i class="fas fa-lock"></i> &nbsp; Nhập lại mật khẩu mới: </label>
+                    </div>
+                    <div class="input-group col-md-8">
+                      <input formControlName="Confirm_Password_Form" type="{{isPassword ? 'password' : 'text' }}" class="form-control" placeholder="Nhập lại mật khẩu mới" />
+                      <div class="input-group-append">
+                        <span (click)="show()" class="input-group-text"><i class="far fa-eye"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <label style="color: red;"> {{ValidatePassword}} </label>
+                    </div>
+                  </div>
+                  <div class="row cus-row col-md-6" style="display: block; margin-left: auto; margin-right: auto">
+                    <!-- /.col -->
+                    <button (click)="ChangePass()" type="submit" class="btn btn-primary btn-block btn-flat"
+                      style="border-radius: 12px;">
+                      Lưu thay đổi
+                    </button>
+                    <!-- /.col -->
+                  </div>
+                </form>
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+      </div>
+  </div>
+</section>

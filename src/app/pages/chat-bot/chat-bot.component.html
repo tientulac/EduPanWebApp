@@ -1,0 +1,59 @@
+<button ngbTooltip="Hỗ trợ" class="chatbox-open" (click)="clickComment()">
+    <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
+  </button>
+  
+  <section class="chatbox-popup">
+    <header class="chatbox-popup__header" style="height:10%;">
+        <aside style="flex:3">
+            <i style="font-size:4vh;" class="fa fa-user-circle fa-4x chatbox-popup__avatar" aria-hidden="true"></i>
+        </aside>
+        <aside style="flex:8">
+            <h6 style="font-weight:bold">{{FullName_get}}</h6> {{UserName_get}} (Online)
+        </aside>
+        <aside style="flex:1">
+          <button class="chatbox-close" (click)="closePopUp()">
+              <i class="fas fa-minus"></i>
+          </button>
+        </aside>
+    </header>
+    <main class="chatbox-popup__main">
+  
+        <div class="menuOptions">
+            <p style="text-align:center">Hỗ trợ trực tuyến</p>
+            <p style="text-align:left;">1. SĐT hỗ trợ</p>
+            <p style="text-align:left;">2. Địa chỉ công ty</p>
+            <p style="text-align:left;">3. Giới thiệu phần mềm</p>
+            <p style="text-align:left;">4. Tài liệu hướng dẫn</p>
+            <p style="text-align:left;">5. Công nghệ sử dụng</p>
+        </div>
+        <div class="responseBot">
+            <b id="chatlog7" class="chatlog">&nbsp;</b>
+            <b id="chatlog6" class="chatlog">&nbsp;</b>
+            <b id="chatlog5" class="chatlog">&nbsp;</b>
+            <b id="chatlog4" class="chatlog">&nbsp;</b>
+            <b id="chatlog3" class="chatlog">&nbsp;</b>
+            <b id="chatlog2" class="chatlog">&nbsp;</b>
+            <b id="chatlog1" class="chatlog">&nbsp;</b>
+        </div>
+    </main>
+    <footer class="chatbox-popup__footer">
+        <aside style="flex:1;color:#888;text-align:center;">
+          <button class="chatbox-zoomOut" (click)="zoomOutPopUp()">
+              <i class="fas fa-expand" aria-hidden="true"></i>
+          </button>    
+          <button class="chatbox-zoomIn" (click)="zoomInPopUp()" style="display:none;">
+              <i class="fas fa-compress"></i>
+          </button>    
+        </aside>
+        <aside style="flex:10">
+          <form [formGroup]="form">
+              <input id="chatbox"  formControlName="myInput" placeholder="Focused Input" placeholder="Nhập lựa chọn của bạn !">          
+              <button style="display: none;" (click)="focusMyInput()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+          </form>
+        </aside>
+        <aside style="flex:1;color:#888;text-align:center;">
+              <button class="btn btn-info" (click)="focusMyInput()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </aside>
+    </footer>
+  </section>
+  

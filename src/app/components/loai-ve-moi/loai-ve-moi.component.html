@@ -1,0 +1,53 @@
+<!----------------------------------------------- HEADER ------------------------------------------------->
+<section class="content-header" style="padding:0.5%  !important">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <ol class="breadcrumb float-left">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']"><i class="fas fa-home"></i> &nbsp;Trang chủ</a>
+                    </li>
+                    <li class="breadcrumb-item active">Loại hỗ trợ</li>
+                </ol>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-warning btn-sm"  type="submit" style="float: right;margin-right: 5px; ">
+                    <i class="fas fa-info-circle"></i>
+                    Hướng dẫn
+                </button>
+            </div>
+        </div>
+    </div>
+  </section>
+
+<!----------------------------------------------- TABLE ------------------------------------------------->
+<section class="content cus-body">
+  <div class="card">
+      <div class="card-body">
+          <div class="tab-content">
+              <div class="active tab-pane">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="table-responsive dataTables_wrapper container-fluid dt-bootstrap4 cus-fs">
+                              <table style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                  class="table-bordered dataTables_wrapper no-footer">
+                              <thead style="text-align: center;">
+                                  <tr>
+                                      <th></th>
+                                      <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let p of dataTable; let i=index" >
+                                      <td>{{i+1}}</td>
+                                      <td>{{p.Ten_loai}}</td>
+                                    </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

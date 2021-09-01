@@ -1,0 +1,208 @@
+<div class="col-md-12" id="viewtable">
+    <div class="card" style="background-color: #eae1e1;">
+        <h4 style="text-align: center; font-weight: bolder;margin: 20px auto;">
+        Phòng 01
+        </h4>
+    </div>
+
+</div>
+<div class="card-body">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <table style="margin: 0 auto;">
+                    <tr *ngFor="let i of So_hang_array;">
+                        <td *ngFor="let j of So_cot_array;">
+                        <a 
+                            [routerLink]="['/test']" 
+                            [routerLinkActive]="['is-active']" 
+                            style="font-weight: bold;"
+                            (click)="open(AddModal, 'lg', 'Add', i, j)"
+                        >
+                            <span>
+                                <i *ngIf="i == 1" class="fas fa-exclamation-triangle blink_me _ptop"></i
+                            ></span>
+                            <div *ngIf="j==1" class="roomWarning">
+                                <span class="roomName">A - H{{i}} </span><br/>
+                                <span class="roomSlot">
+                                    <i *ngIf="j == 1" style="color: #28a745;" class="fas fa-check-circle"></i></span>
+                                <br/>
+                            </div>
+                            <div *ngIf="j==2" class="roomWarning">
+                                <span class="roomName">B - H{{i}} </span><br/>
+                                <span class="roomSlot">
+                                    <i *ngIf="j == 1" style="color: #28a745;" class="fas fa-check-circle"></i></span>
+                                <br/>
+                            </div>
+                            <div *ngIf="j==3" class="roomWarning">
+                                <span class="roomName">C - H{{i}} </span><br/>
+                                <span class="roomSlot">
+                                    <i *ngIf="j == 1" style="color: #28a745;" class="fas fa-check-circle"></i></span>
+                                <br/>
+                            </div>
+                            <div *ngIf="j==4" class="roomWarning">
+                                <span class="roomName">D - H{{i}} </span><br/>
+                                <span class="roomSlot">
+                                    <i *ngIf="j == 1" style="color: #28a745;" class="fas fa-check-circle"></i></span>
+                                <br/>
+                            </div>
+                            <div *ngIf="j==5" class="roomWarning">
+                                <span class="roomName">E - H{{i}} </span><br/>
+                                <span class="roomSlot">
+                                    <i *ngIf="j == 1" style="color: #28a745;" class="fas fa-check-circle"></i></span>
+                                <br/>
+                            </div>
+                        </a>
+                        </td>                            
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6" style="background-color:beige;border-radius: 10px;">
+                <h4 style="text-align: center; font-weight: bolder;margin: 20px 0;">
+                    Danh sách thành viên
+                </h4>
+                <section class="content cus-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="active tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" [(ngModel)]="searchMember" placeholder="Tìm kiếm ...">
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                </section>
+                <section class="content cus-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="active tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-bordered">
+                                                <thead style="text-align: center;">
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Phòng</th>
+                                                        <th>Tên chuyên gia</th>
+                                                        <th>Chỗ ngồi</th>
+                                                        <th>Thao tác</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let p of dataChuyenGiaPhongHop; let i=index" >
+                                                        <td style="text-align: center">{{i+1}}</td>
+                                                        <td style="text-align: center">{{p.Ten_phong}}</td>
+                                                        <td style="text-align: center">{{p.Ten_chuyen_gia}}</td>
+                                                        <td style="text-align: center">Hàng: {{p.Hang}} - Cột: {{p.Cot}}</td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-info"
+                                                            (click)="openDelete(DeleteModal, 'xs', 'Delete', p)"
+                                                            style="background-color: #dc3545;border-color:#dc3545 !important;">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                            </button>
+                                                        </td>
+                                                      </tr>
+                                                  </tbody>
+                                            </table>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-----------------------------------------------ADD MODAL ------------------------------------------------->
+  <ng-template #AddModal let-modal>
+    <div class="modal-header m-header text-center" style="padding-top: 0px; padding-bottom: 0px;">
+      <h4 class="modal-title h-title w-100"> {{titleModal}}</h4>
+      <span (click)="modal.dismiss('Cross click')" aria-hidden="true" style="font-size: 25px;">&times;</span>
+    </div>
+    <div class="modal-body">
+        <section class="content cus-body">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="active tab-pane">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <thead style="text-align: center;">
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Chọn</th>
+                                                <th>Tên chuyên gia</th>
+                                                <th>Học hàm</th>
+                                                <th>Học vị</th>
+                                                <th>Giới tính</th>
+                                                <th>Ngày sinh</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let p of dataTable; let i=index" >
+                                                <td style="text-align: center">{{i+1}}</td>
+                                                <td style="text-align: center">
+                                                    <input style="width: 15px;height: 15px;" type="checkbox" [checked]="p.Trang_thai" [(ngModel)]="p.Trang_thai" (change)="checkBox()">
+                                                </td>
+                                                <td style="text-align: center">{{p.Ten_chuyen_gia}}</td>
+                                                <td style="text-align: center">{{p.Ten_hoc_ham}}</td>
+                                                <td style="text-align: center">{{p.Ten_hoc_vi}}</td>
+                                                <td style="text-align: center">{{p.Ten_gioi_tinh}}</td>
+                                                <td style="text-align: center">{{p.Ngay_sinh | date: 'dd-MM-yyyy'}}</td>
+                                              </tr>
+                                          </tbody>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+        </section>
+    </div>
+    <div class="modal-footer">
+      <div class="float-right">
+        <button type="button" class="btn btn-md btn-success" (click)="onSubmit()">
+          <i class="fas fa-save"></i> Lưu
+        </button>
+        <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')"
+          style="margin-left: 1em;">
+          <i class="far fa-times-circle"></i> Đóng
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-----------------------------------------------DELETE MODAL ------------------------------------------------->
+  <ng-template #DeleteModal let-modal>
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="icon-box">
+                <i class="fas fa-trash-alt"
+                    style="color: #f15e5e;font-size: 46px;display: inline-block;margin-top: 13px;"></i>
+            </div>
+            <p
+                style="color: inherit; text-decoration: none;font-size: 20px; text-align: center; font-weight: 600; margin-top: 3em;">
+                Bạn có chắc chắn muốn xóa
+            </p>
+            <div class="text-center">
+                <button type="button" class="btn btn-md btn-success" (click)="Delete()" >
+                    Đồng ý
+                </button>
+                <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')" style="margin-left: 1em;">
+                    Hủy bỏ
+                </button>
+
+            </div>
+        </div>
+    </div>
+  </ng-template>

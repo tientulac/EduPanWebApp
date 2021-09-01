@@ -1,0 +1,32 @@
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand bg-info navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" (click)="toggleMenuSidebar.emit()"
+          ><i class="fas fa-bars cus-icon"></i
+        ></a>
+      </li>
+      <!-- <li class="nav-item d-none d-sm-inline-block">
+        <a [routerLink]="['/']" class="nav-link">Home</a>
+      </li> -->
+      <!-- <li class="nav-item d-none d-sm-inline-block">
+        <a [routerLink]="['/blank']" class="nav-link">Contact</a>
+      </li> -->
+    </ul>
+  
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <app-portal-user-dropdown></app-portal-user-dropdown>
+      <!-- Notifications Dropdown Menu -->
+      <!-- <app-notifications-dropdown-menu></app-notifications-dropdown-menu> -->
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">
+          <i class="fas fa-power-off cus-icon"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+  
