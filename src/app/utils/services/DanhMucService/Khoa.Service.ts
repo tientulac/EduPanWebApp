@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class HocBongSinhVienService {
+export class KhoaService {
 
   constructor(
     @Inject(AppConfig) private readonly appConfig: AppConfiguration,
@@ -18,33 +18,27 @@ export class HocBongSinhVienService {
   ) { }
 
   Load_List(token): Observable<any> {
-    return this.http.get<any>(this.appConfig.EduPan + 'HocBongSinhVien/Load_List', {
+    return this.http.get<any>(this.appConfig.EduPan + 'Khoa/Load_List', {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
    }).pipe(map((z) => {return z;}));
   }
 
-  Delete(ID_hb_sv: number, token): Observable<any> {
-    return this.http.get<any>(this.appConfig.EduPan + 'HocBongSinhVien/Delete?ID_hb_sv='+ID_hb_sv,{
+  Delete(ID_khoa: number, token): Observable<any> {
+    return this.http.get<any>(this.appConfig.EduPan + 'Khoa/Delete?ID_khoa='+ID_khoa,{
          headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
       }).pipe(map((z) => {return z;}));
   }
 
   Update(req: any,token): Observable<any> {
-    return this.http.post<any>(this.appConfig.EduPan + 'HocBongSinhVien/Update',req,{
+    return this.http.post<any>(this.appConfig.EduPan + 'Khoa/Update',req,{
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
    }).pipe(map((z) => {return z;}));
   }
 
   Insert(req: any, token): Observable<any> {
-    return this.http.post<any>(this.appConfig.EduPan + 'HocBongSinhVien/Insert',req,{
+    return this.http.post<any>(this.appConfig.EduPan + 'HoiThao/Insert',req,{
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
    }).pipe(map((z) => {return z;}));
   }
 
-  ChangeStatus(ID_hb_sv: number,Trang_thai: number, token): Observable<any> {
-    return this.http.get<any>(this.appConfig.EduPan + 'HocBongSinhVien/ChangeStatus?ID_hb_sv='+ID_hb_sv+'&Trang_thai='+Trang_thai, {
-      headers: new HttpHeaders()
-        .set('Authorization', `Bearer ${token}`)
-    }).pipe(map(z => { return z }))
-  }
 }

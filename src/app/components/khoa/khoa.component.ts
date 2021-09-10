@@ -7,16 +7,15 @@ import { FormControl, FormGroup, FormBuilder, Validators, MaxLengthValidator, Ab
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subject } from 'rxjs';
-import { DanhSachHoTroService } from 'src/app/utils/services/DanhMucService/DanhSachHoTro.service';
-import { LoaiService } from 'src/app/utils/services/DanhMucService/Loai.service';
-import { DiaPhuongService } from 'src/app/utils/services/DanhMucService/DiaPhuong.service';
+import { KhoaService } from 'src/app/utils/services/DanhMucService/Khoa.service';
+import { TruongHocService } from 'src/app/utils/services/DanhMucService/TruongHoc.service';
 
 @Component({
-  selector: 'app-danh-sach-ho-tro',
-  templateUrl: './danh-sach-ho-tro.component.html',
-  styleUrls: ['./danh-sach-ho-tro.component.scss']
+  selector: 'app-khoa',
+  templateUrl: './khoa.component.html',
+  styleUrls: ['./khoa.component.scss']
 })
-export class DanhSachHoTroComponent implements OnInit {
+export class KhoaComponent implements OnInit {
 
   dtOptions: DataTables.Settings;
   Token: string;
@@ -31,18 +30,12 @@ export class DanhSachHoTroComponent implements OnInit {
   checkInsert:boolean = false;
   titleModal: any;
   selected_ID: any;
-  
-  dataLoaiHoTro: any;
-  dataDiaPhuong: any;
+  dataTruong: any;
 
   Insert = new FormGroup({
-    ID_loai: new FormControl('', [Validators.required]),
-    ID_dia_phuong: new FormControl('', [Validators.required]),
-    So_luong: new FormControl('', [Validators.required]),
-    Trang_thai_duyet: new FormControl('', [Validators.required]),
-    Thoi_gian_quyen_gop: new FormControl('', [Validators.required]),
-    So_tien_mong_muon: new FormControl('', [Validators.required]),
-    So_tien_ung_ho: new FormControl('', [Validators.required]),
+    Ma_khoa: new FormControl('', [Validators.required]),
+    Ten_khoa: new FormControl('', [Validators.required]),
+    ID_truong: new FormControl('', [Validators.required]),
   });
 
   constructor(
@@ -51,9 +44,8 @@ export class DanhSachHoTroComponent implements OnInit {
     public router: Router,
     private fromBuilder: FormBuilder,
     private toastr: ToastrService,
-    private DannhSachHoTro: DanhSachHoTroService,
-    private Loai: LoaiService,
-    private DiaPhuong: DiaPhuongService
+    private KhoaService: KhoaService,
+    private TruongHoc: TruongHocService
   ) { }
 
   ngOnInit(): void {
@@ -92,31 +84,15 @@ export class DanhSachHoTroComponent implements OnInit {
           className: "dt-center"
         },
         {
-          title: 'Loại hỗ trợ',
+          title: 'Mã khoa',
           className: "dt-center"
         },
         {
-          title: 'Địa phương',
+          title: 'Tên khoa',
           className: "dt-center"
         },
         {
-          title: 'Số lượng',
-          className: "dt-center"
-        },
-        {
-          title: 'Trạng thái',
-          className: "dt-center"
-        },
-        {
-          title: 'Thời gian quyên góp (giờ)',
-          className: "dt-center"
-        },
-        {
-          title: 'Số tiền mong muốn',
-          className: "dt-center"
-        },
-        {
-          title: 'Số tiền hỗ trợ',
+          title: 'Trường học',
           className: "dt-center"
         },
         {
@@ -126,24 +102,23 @@ export class DanhSachHoTroComponent implements OnInit {
       ],
     };
     this.GetAll();
+    this.GetTruong();
   }
 
   GetAll() {
-    this.DannhSachHoTro.Load_List(this.Token)
+    this.KhoaService.Load_List(this.Token)
       .subscribe(z => {
         this.dataTable = z.Data;
         this.dtTrigger.next();
-        this.Loai.LoaiHoTro_Load_List(this.Token).subscribe(
-          (res) => {
-            this.dataLoaiHoTro = res.Data;
-            this.DiaPhuong.Load_List(this.Token).subscribe(
-              (res) => {
-                this.dataDiaPhuong = res.Data;
-              }
-            );
-          }
-        );
     });
+  }
+
+  GetTruong() {
+    this.TruongHoc.Load_List(this.Token).subscribe(
+      (res) => {
+        this.dataTruong = res.Data;
+      }
+    );
   }
 
   private getDismissReason(reason: any): string {
@@ -156,9 +131,8 @@ export class DanhSachHoTroComponent implements OnInit {
     }
   }
 
-
   open(content, sizm, type, Data) {
-    this.selected_ID = Data.ID_ho_tro;
+    this.selected_ID = Data.ID_khoa;
     this.submitted = false;
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title', size: sizm })
@@ -173,10 +147,8 @@ export class DanhSachHoTroComponent implements OnInit {
 
       if(type=="Add"){
         this.Insert.reset();
-        this.Insert.patchValue({
-          ID_loai: '',
-          Trang_thai_duyet: '',
-          ID_dia_phuong: ''
+        this.Insert.patchValue({ 
+          ID_truong: '' 
         })
         this.checkInsert = true;
         this.titleModal = "Thêm mới";
@@ -185,22 +157,18 @@ export class DanhSachHoTroComponent implements OnInit {
         this.checkInsert =false;
         this.titleModal = "cập nhật";
         this.Insert.patchValue({
-          ID_loai: Data.ID_loai,
-          ID_dia_phuong: Data.ID_dia_phuong,
-          So_luong: Data.So_luong,
-          Trang_thai_duyet: Data.Trang_thai_duyet,
-          Thoi_gian_quyen_gop: Data.Thoi_gian_quyen_gop,
-          So_tien_mong_muon: Data.So_tien_mong_muon,
-          So_tien_ung_ho: Data.So_tien_ung_ho
+          Ma_khoa: Data.Ma_khoa,
+          Ten_khoa: Data.Ten_khoa,
+          ID_truong: Data.ID_truong
         });
       }
       if (type == "Delete") {
-        this.selected_ID = Data.ID_ho_tro;
+        this.selected_ID = Data.ID_khoa;
       }
   }
 
   Delete() {
-    this.DannhSachHoTro.Delete(this.selected_ID, this.Token)
+    this.KhoaService.Delete(this.selected_ID, this.Token)
       .subscribe(z => {
         this.modalService.dismissAll('DeleteModal');
         if (z.Status == 2) {
@@ -245,18 +213,14 @@ export class DanhSachHoTroComponent implements OnInit {
       return false;
     }
     let req = {
-      ID_ho_tro: this.selected_ID,
-      ID_loai: this.Insert.value.ID_loai,
-      ID_dia_phuong: this.Insert.value.ID_dia_phuong,
-      So_luong: this.Insert.value.So_luong,
-      Trang_thai_duyet: this.Insert.value.Trang_thai_duyet,
-      Thoi_gian_quyen_gop: this.Insert.value.Thoi_gian_quyen_gop,
-      So_tien_mong_muon: this.Insert.value.So_tien_mong_muon,
-      So_tien_ung_ho: this.Insert.value.So_tien_ung_ho,
+      ID_khoa: this.selected_ID,
+      Ma_khoa: this.Insert.value.Ma_khoa,
+      Ten_khoa: this.Insert.value.Ten_khoa,
+      ID_truong: this.Insert.value.ID_truong
     }
     this.spinner.show();
     if(this.checkInsert){
-      this.DannhSachHoTro.Insert(req,this.Token).subscribe((res)=>{
+      this.KhoaService.Insert(req,this.Token).subscribe((res)=>{
         if (res.Status == 2) {
           this.toastr.warning(res.Message);
           this.spinner.hide();
@@ -289,7 +253,7 @@ export class DanhSachHoTroComponent implements OnInit {
         }
       })
     }else{
-      this.DannhSachHoTro.Update(req,this.Token).subscribe((res)=>{
+      this.KhoaService.Update(req,this.Token).subscribe((res)=>{
         if (res.Status == 2) {
           this.toastr.warning(res.Message);
           this.spinner.hide();

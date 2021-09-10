@@ -10,10 +10,9 @@
   </a>
   <div class="sidebar">
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column"  data-widget="treeview" role="menu" data-accordion="false">
-
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!--------------------------------------------------- MENU 1 (DanhMuc) -------------------------------------------->
-        <li id="menu1" class="nav-item menu-open">
+        <li id="menu1" class="nav-item">
           <a class="nav-link cus-bg" (click)="menu('menu1')" style="background: #418994; color: white;" >
           &nbsp;
           <i class="fas fa-file-medical-alt"></i><p>&nbsp;Danh mục <i class="right fa fa-angle-left"></i> </p>
@@ -45,11 +44,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a  [routerLink]="['/hoi-thao']" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                  <i class="fas fa-chess-rook"></i> <p>&nbsp;Hội thảo</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a  [routerLink]="['/loai-hoc-bong']" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                   <i class="fas fa-gift"></i> <p>&nbsp;Loại học bổng</p>
                 </a>
@@ -71,7 +65,12 @@
               </li>
               <li class="nav-item">
                 <a  [routerLink]="['/phong-hop']" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                  <i class="fas fa-house-user"></i> <p>&nbsp;Phòng họp</p>
+                  <i class="fas fa-torii-gate"></i> <p>&nbsp;Phòng họp</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  [routerLink]="['/khoa']" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                  <i class="fas fa-house-user"></i> <p>&nbsp;Khoa</p>
                 </a>
               </li>
               <!-- <li class="nav-item">
@@ -142,6 +141,35 @@
                 </a>
               </li>
           </ul>
+        </li>
+        <!--------------------------------------------------- MENU 6 (HoiNghi HoiThao) -------------------------------------------->
+        <li id="menu6" class="nav-item menu-open">
+          <a class="nav-link cus-bg" (click)="menu('menu6')" style="background: #418994; color: white;" >
+          &nbsp;
+          <i class="fas fa-house-user"></i><p>&nbsp;Hội nghị, hội thảo <i class="right fa fa-angle-left"></i> </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a  [routerLink]="['/hoi-thao']" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <i class="fas fa-chess-rook"></i> <p>&nbsp;Hội thảo</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a  [routerLink]="['/hoi-thao']" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <i class="fas fa-receipt"></i><p>&nbsp;Đăng kí vé</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--------------------------------------------------- MENU 7 (XepPhong) -------------------------------------------->
+        <li id="menu7" class="nav-item menu-open">
+          <a [routerLink]="['/test']" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link cus-bg" (click)="menu('menu7')" style="background: #418994; color: white;" >
+          &nbsp;
+          <i class="fab fa-buromobelexperte"></i><p>&nbsp;Xếp phòng </p>
+          </a>
         </li>
       </ul>
     </nav>

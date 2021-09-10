@@ -1,0 +1,149 @@
+<!----------------------------------------------- HEADER ------------------------------------------------->
+<section class="content-header" style="padding:0.5%  !important">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <ol class="breadcrumb float-left">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']"><i class="fas fa-home"></i> &nbsp;Trang chủ</a>
+                    </li>
+                    <li class="breadcrumb-item active">Quản lí khoa</li>
+                </ol>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-success btn-sm" (click)="open(AddModal,'ls','Add','')" style="float: right;"><i
+                        class="fas fa-plus-circle"></i> Thêm mới
+                </button>
+                <button class="btn btn-warning btn-sm"  type="submit" style="float: right;margin-right: 5px; ">
+                    <i class="fas fa-info-circle"></i>
+                    Hướng dẫn
+                </button>
+            </div>
+        </div>
+    </div>
+  </section>
+
+<!----------------------------------------------- TABLE ------------------------------------------------->
+<section class="content cus-body">
+  <div class="card">
+      <div class="card-body">
+          <div class="tab-content">
+              <div class="active tab-pane">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="table-responsive dataTables_wrapper container-fluid dt-bootstrap4 cus-fs">
+                              <table style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                  class="table-bordered dataTables_wrapper no-footer">
+                              <thead style="text-align: center;">
+                                  <tr>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let p of dataTable; let i=index" >
+                                      <td>{{i+1}}</td>
+                                      <td>{{p.Ma_khoa}}</td>
+                                      <td>{{p.Ten_khoa}}</td>
+                                      <td>{{p.Ten_truong}}</td>
+                                      <td>
+                                        <button class="btn btn-sm btn-info"
+                                        (click)="open(AddModal, 'xs', 'Update', p)"
+                                        style="margin-right: 5px;">
+                                        <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-info"
+                                        (click)="open(DeleteModal, 'xs', 'Delete', p)"
+                                        style="background-color: #dc3545;border-color:#dc3545 !important;">
+                                        <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-----------------------------------------------ADD MODAL ------------------------------------------------->
+  <ng-template #AddModal let-modal>
+    <div class="modal-header m-header text-center" style="padding-top: 0px; padding-bottom: 0px;">
+      <h4 class="modal-title h-title w-100"> {{titleModal}}</h4>
+      <span (click)="modal.dismiss('Cross click')" aria-hidden="true" style="font-size: 25px;">&times;</span>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal" [formGroup]="Insert">
+        <div class="row">
+          <div class="col-md-12">
+            <label class="col-md-10 require">Mã khoa</label>
+              <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && checkvalueInsert.Ma_khoa.errors }"
+               formControlName="Ma_khoa" placeholder="Nhập mã khoa...">
+               <div *ngIf="submitted && checkvalueInsert.Ma_khoa.errors" class="invalid-feedback">
+                  <div *ngIf="checkvalueInsert.Ma_khoa.errors.required">
+                    Mã khoa không được bỏ trống!
+                  </div>
+               </div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-md-10 require">Tên khoa</label>
+              <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && checkvalueInsert.Ten_khoa.errors }"
+               formControlName="Ten_khoa" placeholder="Nhập tên khoa...">
+               <div *ngIf="submitted && checkvalueInsert.Ten_khoa.errors" class="invalid-feedback">
+                  <div *ngIf="checkvalueInsert.Ten_khoa.errors.required">
+                      Tên khoa không được bỏ trống!
+                  </div>
+               </div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-md-10 require">Trường học</label>
+            <ng-select formControlName="ID_truong" notFoundText="Không có kết quả">
+                <ng-option value="">Tất cả</ng-option>
+                <ng-option *ngFor="let th of dataTruong" [value]="th.ID_truong">{{ th.Ten_truong }}</ng-option>
+            </ng-select>          
+        </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div class="float-right">
+        <button type="button" class="btn btn-md btn-success" (click)="onSubmit()">
+          <i class="fas fa-save"></i> Lưu
+        </button>
+        <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')"
+          style="margin-left: 1em;">
+          <i class="far fa-times-circle"></i> Đóng
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-----------------------------------------------DELETE MODAL ------------------------------------------------->
+  <ng-template #DeleteModal let-modal>
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="icon-box">
+                <i class="fas fa-trash-alt"
+                    style="color: #f15e5e;font-size: 46px;display: inline-block;margin-top: 13px;"></i>
+            </div>
+            <p
+                style="color: inherit; text-decoration: none;font-size: 20px; text-align: center; font-weight: 600; margin-top: 3em;">
+                Bạn có chắc chắn muốn xóa
+            </p>
+            <div class="text-center">
+                <button type="button" class="btn btn-md btn-success" (click)="Delete()" >
+                    Đồng ý
+                </button>
+                <button type="button" class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')" style="margin-left: 1em;">
+                    Hủy bỏ
+                </button>
+
+            </div>
+        </div>
+    </div>
+  </ng-template>

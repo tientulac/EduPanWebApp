@@ -35,6 +35,7 @@ import { MainComponentComponent } from './UserPage/main-component/main-component
 import { HocBongSinhVienSectionComponent } from './UserPage/section/hoc-bong-sinh-vien-section/hoc-bong-sinh-vien-section.component';
 import { SinhVienGianhHbComponent } from './UserPage/section/sinh-vien-gianh-hb/sinh-vien-gianh-hb.component';
 import { DiaPhuongKhoKhanComponent } from './UserPage/section/dia-phuong-kho-khan/dia-phuong-kho-khan.component';
+import { KhoaComponent } from './components/khoa/khoa.component';
 
 const routes: Routes = [
   {
@@ -127,6 +128,10 @@ const routes: Routes = [
         path: 'test',
         component: TestComponent,
         canActivate: [NonAuthGuard],
+      },
+      {
+        path: 'khoa',
+        component: KhoaComponent,
       },
     ],
   },

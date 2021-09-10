@@ -35,6 +35,9 @@ export class HoiThaoComponent implements OnInit {
     Ten_hoi_thao: new FormControl('', [Validators.required]),
     Ngay_bat_dau: new FormControl('', [Validators.required]),
     Ngay_ket_thuc: new FormControl('', [Validators.required]),
+    Dia_chi: new FormControl('', [Validators.required]),
+    Nguoi_to_chuc: new FormControl('', [Validators.required]),
+    So_luong_ve_moi: new FormControl('', [Validators.required]),
   });
 
   constructor(
@@ -94,6 +97,18 @@ export class HoiThaoComponent implements OnInit {
           className: "dt-center"
         },
         {
+          title: 'Địa chỉ',
+          className: "dt-center"
+        },
+        {
+          title: 'Người tổ chức',
+          className: "dt-center"
+        },
+        {
+          title: 'Số lượng vé mời',
+          className: "dt-center"
+        },
+        {
           title: 'Thao tác',
           className: "dt-center"
         },
@@ -146,6 +161,9 @@ export class HoiThaoComponent implements OnInit {
           Ten_hoi_thao: Data.Ten_hoi_thao,
           Ngay_bat_dau: Data.Ngay_bat_dau.substring(0,10),
           Ngay_ket_thuc: Data.Ngay_ket_thuc.substring(0,10),
+          Dia_chi: Data.Dia_chi,
+          Nguoi_to_chuc: Data.Nguoi_to_chuc,
+          So_luong_ve_moi: Data.So_luong_ve_moi
         });
       }
       if (type == "Delete") {
@@ -205,7 +223,10 @@ export class HoiThaoComponent implements OnInit {
       ID_hoi_thao: this.selected_ID,
       Ten_hoi_thao: this.Insert.value.Ten_hoi_thao,
       Ngay_bat_dau: this.Insert.value.Ngay_bat_dau,
-      Ngay_ket_thuc: this.Insert.value.Ngay_ket_thuc
+      Ngay_ket_thuc: this.Insert.value.Ngay_ket_thuc,
+      Dia_chi: this.Insert.value.Dia_chi,
+      Nguoi_to_chuc: this.Insert.value.Nguoi_to_chuc,
+      So_luong_ve_moi: this.Insert.value.So_luong_ve_moi,
     }
     this.spinner.show();
     if(this.checkInsert){

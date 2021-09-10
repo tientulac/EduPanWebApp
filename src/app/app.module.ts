@@ -14,7 +14,6 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ToastrModule } from 'ngx-toastr';
-import { MessagesDropdownMenuComponent } from './pages/main/header/messages-dropdown-menu/messages-dropdown-menu.component';
 import { NotificationsDropdownMenuComponent } from './pages/main/header/notifications-dropdown-menu/notifications-dropdown-menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -75,6 +74,8 @@ import { MainComponentComponent } from './UserPage/main-component/main-component
 import { HocBongSinhVienSectionComponent } from './UserPage/section/hoc-bong-sinh-vien-section/hoc-bong-sinh-vien-section.component';
 import { SinhVienGianhHbComponent } from './UserPage/section/sinh-vien-gianh-hb/sinh-vien-gianh-hb.component';
 import { DiaPhuongKhoKhanComponent } from './UserPage/section/dia-phuong-kho-khan/dia-phuong-kho-khan.component';
+import { KhoaComponent } from './components/khoa/khoa.component';
+import { HocBongSinhVienModule } from './components/hoc-bong-sinh-vien/hoc-bong-sinh-vien.module';
 
 registerLocaleData(localeEn, 'en-EN');
 @NgModule({
@@ -88,7 +89,6 @@ registerLocaleData(localeEn, 'en-EN');
     BlankComponent,
     ProfileComponent,
     DashboardComponent,
-    MessagesDropdownMenuComponent,
     NotificationsDropdownMenuComponent,
     UserDropdownMenuComponent,
     DangNhapComponent,
@@ -128,6 +128,7 @@ registerLocaleData(localeEn, 'en-EN');
     HocBongSinhVienSectionComponent,
     SinhVienGianhHbComponent,
     DiaPhuongKhoKhanComponent,
+    KhoaComponent,
   ],
   imports: [
     AgGridModule.withComponents([]),
@@ -153,7 +154,8 @@ registerLocaleData(localeEn, 'en-EN');
     ProgressBarModule,
     MatProgressBarModule,
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    HocBongSinhVienModule
   ],
   providers: [
     CookieService,

@@ -10,6 +10,7 @@ import { Version } from 'src/app/Models/version';
 import { Subject } from 'rxjs';
 import { SinhVienService } from 'src/app/utils/services/DanhMucService/SinhVien.service';
 import { TruongHocService } from 'src/app/utils/services/DanhMucService/TruongHoc.service';
+import { KhoaService } from 'src/app/utils/services/DanhMucService/Khoa.service';
 
 @Component({
   selector: 'app-sinh-vien',
@@ -33,6 +34,7 @@ export class SinhVienComponent implements OnInit {
   selected_ID: any;
 
   dataTruongHoc: any;
+  dataKhoa: any;
 
   Insert = new FormGroup({
     Ho_ten: new FormControl('', [Validators.required]),
@@ -42,7 +44,7 @@ export class SinhVienComponent implements OnInit {
     CCCD: new FormControl('', [Validators.required]),
     Gioi_tinh: new FormControl('',[Validators.required]),
     Ngay_sinh: new FormControl('',[Validators.required]),
-    ID_truong: new FormControl('',[Validators.required]),
+    ID_khoa: new FormControl('',[Validators.required]),
   });
 
   constructor(
@@ -53,6 +55,7 @@ export class SinhVienComponent implements OnInit {
     private toastr: ToastrService,
     private SinhVien: SinhVienService,
     private TruongHoc: TruongHocService,
+    private Khoa: KhoaService
   ) { }
 
   ngOnInit(): void {
@@ -119,7 +122,11 @@ export class SinhVienComponent implements OnInit {
           className: "dt-center"
         },
         {
-          title: 'Trường học',
+          title: 'Khoa',
+          className: "dt-center"
+        },
+        {
+          title: 'Trường',
           className: "dt-center"
         },
         {
@@ -136,9 +143,9 @@ export class SinhVienComponent implements OnInit {
       (res) => {
         this.dataTable = res.Data;
         this.dtTrigger.next();
-        this.TruongHoc.Load_List(this.Token).subscribe(
+        this.Khoa.Load_List(this.Token).subscribe(
           (res) => {
-            this.dataTruongHoc = res.Data;
+            this.dataKhoa = res.Data;
           }
         );
       }
@@ -173,7 +180,7 @@ export class SinhVienComponent implements OnInit {
         this.Insert.reset();
         this.Insert.patchValue({
           Gioi_tinh: true,
-          ID_truong: '',
+          ID_khoa: '',
         })
         this.checkInsert = true;
         this.titleModal = "Thêm mới";
@@ -189,7 +196,7 @@ export class SinhVienComponent implements OnInit {
           CCCD: Data.CCCD,
           Gioi_tinh: Data.Gioi_tinh,
           Ngay_sinh: Data.Ngay_sinh.substring(0,10),
-          ID_truong: Data.ID_truong,
+          ID_khoa: Data.ID_khoa,
         });
       }
       if (type == "Delete") {
@@ -251,7 +258,7 @@ export class SinhVienComponent implements OnInit {
       CCCD: this.Insert.value.CCCD,
       Gioi_tinh: this.Insert.value.Gioi_tinh,
       Ngay_sinh: this.Insert.value.Ngay_sinh,
-      ID_truong: this.Insert.value.ID_truong,
+      ID_khoa: this.Insert.value.ID_khoa,
     }
     this.spinner.show();
     if(this.checkInsert){

@@ -1,0 +1,12 @@
+th:last-child,
+   td:last-child {
+     position: sticky;
+     right: 0px;
+     background: #f2f2f2;
+   }
+   th:last-child {
+     z-index: 100;
+   }
+   th {
+     white-space: nowrap;
+   }

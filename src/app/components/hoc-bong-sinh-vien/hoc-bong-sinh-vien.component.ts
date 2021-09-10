@@ -36,13 +36,38 @@ export class HocBongSinhVienComponent implements OnInit {
   dataSinhVien: any;
   dataLoaiHocBong: any;
 
+  dataTrangThai = [
+    {
+      "Trang_thai": "1",
+      "Ten_trang_thai": "Đã duyệt",
+    },
+    {
+      "Trang_thai": "2",
+      "Ten_trang_thai": "Chờ duyệt",
+    },
+    {
+      "Trang_thai": "3",
+      "Ten_trang_thai": "Từ chối duyệt",
+    },
+    {
+      "Trang_thai": "4",
+      "Ten_trang_thai": "Đã chuyển đến sinh viên",
+    },
+  ];
+
   Insert = new FormGroup({
     ID_loai: new FormControl('', [Validators.required]),
     Ten_hoc_bong: new FormControl('', [Validators.required]),
     Ngay_cap: new FormControl('', [Validators.required]),
     Trang_thai: new FormControl('', [Validators.required]),
     ID_sinh_vien: new FormControl('', [Validators.required]),
+    Gia_tri_max: new FormControl('', [Validators.required]),
+    Ngay_het_han: new FormControl('', [Validators.required]),
   });
+
+  StatusForm = new FormGroup({
+    Trang_thai: new FormControl('')
+  })
 
   constructor(
     public spinner: NgxSpinnerService,
@@ -99,7 +124,7 @@ export class HocBongSinhVienComponent implements OnInit {
           className: "dt-center"
         },
         {
-          title: 'Trạng thái',
+          title: 'Ngày hết hạn',
           className: "dt-center"
         },
         {
@@ -107,7 +132,15 @@ export class HocBongSinhVienComponent implements OnInit {
           className: "dt-center"
         },
         {
+          title: 'Giá trị',
+          className: "dt-center"
+        },
+        {
           title: 'Sinh viên',
+          className: "dt-center"
+        },
+        {
+          title: 'Trạng thái',
           className: "dt-center"
         },
         {
@@ -181,9 +214,11 @@ export class HocBongSinhVienComponent implements OnInit {
           Ngay_cap: Data.Ngay_cap.substring(0,10),
           Trang_thai: Data.Trang_thai,
           ID_sinh_vien: Data.ID_sinh_vien,
+          Gia_tri_max: Data.Gia_tri_max,
+          Ngay_het_han: Data.Ngay_het_han
         });
       }
-      if (type == "Delete") {
+      if (type == "Delete" || type == "Status") {
         this.selected_ID = Data.ID_hb_sv;
       }
   }
@@ -240,6 +275,8 @@ export class HocBongSinhVienComponent implements OnInit {
       Ngay_cap: this.Insert.value.Ngay_cap,
       Trang_thai: this.Insert.value.Trang_thai,
       ID_sinh_vien: this.Insert.value.ID_sinh_vien,
+      Gia_tri_max: this.Insert.value.Gia_tri_max,
+      Ngay_het_han: this.Insert.value.Ngay_het_han,
     }
     this.spinner.show();
     if(this.checkInsert){
@@ -310,5 +347,39 @@ export class HocBongSinhVienComponent implements OnInit {
         }
       })
     }
+  }
+
+  changeStatus() {
+    this.submitted = true;
+    this.HocBongSinhVien.ChangeStatus(this.selected_ID,this.StatusForm.value.Trang_thai,this.Token).subscribe((res)=>{
+      if (res.Status == 2) {
+        this.toastr.warning(res.Message);
+      } else if (res.Status == 1) {
+        this.toastr.success(res.Message);
+      } else if (res.Status == 4) {
+        this.toastr.error('Thêm mới thất bại!');
+      }
+      this.modalService.dismissAll('');
+      this.StatusForm.reset();
+      this.datatableElement.dtInstance.then(
+        (dtInstance: DataTables.Api) => {
+          dtInstance.destroy();
+        }
+      );
+      this.GetAll();
+    },
+    (err) => {
+
+      this.spinner.hide();
+      if (err.status == 0) {
+        localStorage.removeItem('UserInfo');
+        this.router.navigate(['/login']);
+      }
+      if (err.status == 401) {
+        this.toastr.warning(
+          'Bạn không có quyền sử dụng chức năng này, vui lòng liên hệ với quản trị viên để được hỗ trợ!'
+        );
+      }
+    })
   }
 }
