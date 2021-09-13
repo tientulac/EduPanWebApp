@@ -57,10 +57,10 @@
                                     <td>{{p.Ho_ten}}</td>                                  
                                     <td>
                                       <form class="form-horizontal" [formGroup]="StatusForm">
-                                          <mat-form-field [style]="{backgroundColor: '#6c757d'}" appearance="fill">
-                                              <mat-label style="font-weight: bold">{{p.Ten_trang_thai}}</mat-label>
+                                          <mat-form-field [style]="{backgroundColor: '#212529'}" appearance="fill">
+                                              <mat-label style="color: white;font-weight: normal !important;">{{p.Ten_trang_thai}}</mat-label>
                                               <mat-select formControlName="Trang_thai">
-                                                  <mat-option (click)="open(StatusModal,'xs','Status',p)" style="text-transform: uppercase;" *ngFor="let tt of dataTrangThai" [value]="tt.Trang_thai">
+                                                  <mat-option (click)="open(StatusModal,'xs','Status',p)" style="text-transform: uppercase;color:white" *ngFor="let tt of dataTrangThai" [value]="tt.Trang_thai">
                                                   {{tt.Ten_trang_thai}}
                                                   </mat-option>
                                               </mat-select>
